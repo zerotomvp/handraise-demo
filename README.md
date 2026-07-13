@@ -18,7 +18,7 @@ The hosted endpoint requires a shared demo token to *create* requests (it's pinn
 ## Run it
 
 1. Go to the **Actions** tab → **gate** → **Run workflow**.
-2. Set `assignee` to your Slack user id, `@handle`, or email in the Handraise sandbox workspace (default: `sd0bgrfsqxge_user`) and optionally edit the `title`.
+2. Set `assignee` to your Slack user id, `@handle`, or email in the Handraise sandbox workspace (default: `georgiosd`) and optionally edit the `title`.
 3. Watch the run block on the *handraise-gate* step, answer the card in Slack, and watch the run resume (or fail) with your verdict.
 
 ## Honest note: this burns a runner

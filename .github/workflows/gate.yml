@@ -6,7 +6,7 @@ on:
       assignee:
         description: "Who approves (Slack user id, @handle, or email)"
         required: true
-        default: "sd0bgrfsqxge_user"
+        default: "georgiosd"
       title:
         description: "What the approver is asked"
         required: true
