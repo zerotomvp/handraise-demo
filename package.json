@@ -1,0 +1,16 @@
+{
+  "name": "handraise-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Demo: a GitHub Actions CI gate that blocks on a typed human decision in Slack via Handraise (MCP).",
+  "scripts": {
+    "gate": "node gate.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.16.0"
+  }
+}

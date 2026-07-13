@@ -1,0 +1,39 @@
+name: gate
+
+on:
+  workflow_dispatch:
+    inputs:
+      assignee:
+        description: "Who approves (Slack user id, @handle, or email)"
+        required: true
+        default: "sd0bgrfsqxge_user"
+      title:
+        description: "What the approver is asked"
+        required: true
+        default: "CI gate: deploy handraise-demo to prod?"
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - name: handraise-gate — block on a human verdict in Slack
+        run: node gate.mjs
+        env:
+          GATE_ASSIGNEE: ${{ inputs.assignee }}
+          GATE_TITLE: ${{ inputs.title }}
+          GATE_TOKEN: ${{ secrets.GATE_TOKEN }}
+
+      # Only reached if the gate step exited 0 (approved).
+      - name: deploy (demo stand-in)
+        run: |
+          echo "Verdict: approved — deploying handraise-demo to prod..."
+          sleep 2
+          echo "Deploy complete. (This is a demo stand-in; nothing was actually deployed.)"
