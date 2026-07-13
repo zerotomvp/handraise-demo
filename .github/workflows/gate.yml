@@ -18,18 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - run: npm ci
-
       - name: handraise-gate — block on a human verdict in Slack
-        run: node gate.mjs
-        env:
-          GATE_ASSIGNEE: ${{ inputs.assignee }}
-          GATE_TITLE: ${{ inputs.title }}
-          GATE_TOKEN: ${{ secrets.GATE_TOKEN }}
+        uses: zerotomvp/handraise-gate@v1
+        with:
+          assignee: ${{ inputs.assignee }}
+          title: ${{ inputs.title }}
+          token: ${{ secrets.GATE_TOKEN }}
 
       # Only reached if the gate step exited 0 (approved).
       - name: deploy (demo stand-in)
